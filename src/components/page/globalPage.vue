@@ -6,7 +6,7 @@
         <div class="welcomeText">欢迎您，{{ userName }}</div>
       </div> -->
       <div class="centerTitle">
-        <div class="title" @click="goControl">臻航生产管理系统</div>
+        <div class="title" @click="goControl">俊达生产管理系统</div>
       </div>
       <!-- <div class="rightTime">
         <div class="currentTime">{{ currentTmie }}</div>

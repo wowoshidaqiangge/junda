@@ -9,15 +9,15 @@ const router = new Router({
             redirect: '/dashboard'
         },
         // 大屏
-        {
-            path: '/dashboard',
-            component: () =>
-                import (
-                    /* webpackChunkName: "dashboard" */
-                    '../components/page/globalPage.vue'
-                ),
-            meta: { title: '大屏' }
-        },
+        // {
+        //     path: '/dashboard',
+        //     component: () =>
+        //         import (
+        //             /* webpackChunkName: "dashboard" */
+        //             '../components/page/Dashboard.vue'
+        //         ),
+        //     meta: { title: '大屏' }
+        // },
         {
             path: '/',
             component: () =>
@@ -27,7 +27,7 @@ const router = new Router({
                 ),
             meta: { title: '大屏' },
             children: [{
-                    path: '/dashboard1',
+                    path: '/dashboard',
                     component: () =>
                         import (
                             /* webpackChunkName: "dashboard" */
@@ -304,7 +304,7 @@ const router = new Router({
                     /* webpackChunkName: "login" */
                     '../components/page/Login.vue'
                 ),
-            meta: { title: '臻航生产管理系统' }
+            meta: { title: '俊达生产管理系统' }
         },
         {
             path: '/headman',

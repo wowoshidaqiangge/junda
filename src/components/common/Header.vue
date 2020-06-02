@@ -5,7 +5,7 @@
       <i v-if="!collapse" class="el-icon-s-fold"></i>
       <i v-else class="el-icon-s-unfold"></i>
     </div>
-    <div class="logo" @click="goGlobal">臻航生产管理系统</div>
+    <div class="logo" @click="goGlobal">俊达生产管理系统</div>
     <div class="header-right">
       <div class="header-user-con">
         <div class="nowtime">{{ currentTime }} {{ nowWeek }}</div>
@@ -143,7 +143,7 @@ export default {
   created() {
     this.page.beginDate = this.getToday();
     this.page.endDate = this.page.beginDate;
-    this.getmainrecordpage();
+    // this.getmainrecordpage();
     let that = this;
     //  bus.$on('isman', e=>{
     //     this.isheadman = true
