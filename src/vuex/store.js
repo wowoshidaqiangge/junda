@@ -26,9 +26,9 @@ const store = new Vuex.Store({
   
           if(res.code==='0'){
             const data = res.data
-            localStorage.setItem('userId',data.id)
+            sessionStorage.setItem('userId',data.id)
             if(data.icCard){
-              localStorage.setItem('icCard',data.icCard)
+              sessionStorage.setItem('icCard',data.icCard)
             }
             
             commit('setUserId', data.id)

@@ -87,8 +87,8 @@ export default {
                         duration: 700,
                         });
                         // this.$message.success('登录成功');
-                        localStorage.setItem('ms_username', res.username);
-                        localStorage.setItem('TagsList', '');
+                        sessionStorage.setItem('ms_username', res.username);
+                        sessionStorage.setItem('TagsList', '');
 
                         if (res.roleId === '1000') {
                             // bus.$emit('isman', true);

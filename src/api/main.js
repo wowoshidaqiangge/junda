@@ -304,7 +304,7 @@ export const productadd = query => {
         url: `/api/producetask/product`,
         method: 'post',
         data: query,
-        headers: { userId: localStorage.getItem('userId') }
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 
@@ -322,7 +322,7 @@ export const productput = query => {
         url: `/api/producetask/product`,
         method: 'put',
         data: query,
-        headers: { userId: localStorage.getItem('userId') }
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 
@@ -341,7 +341,7 @@ export const productupdateState = query => {
         url: `/api/producetask/product/updateState`,
         method: 'put',
         data: query,
-        headers: { userId: localStorage.getItem('userId') }
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 
@@ -359,7 +359,7 @@ export const orderadd = query => {
         url: `/api/producetask/order`,
         method: 'post',
         data: query,
-        headers: { userId: localStorage.getItem('userId') }
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 // 订单锁定
@@ -386,7 +386,7 @@ export const orderput = query => {
         url: `/api/producetask/order`,
         method: 'put',
         data: query,
-        headers: { userId: localStorage.getItem('userId') }
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 

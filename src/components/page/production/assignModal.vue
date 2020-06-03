@@ -209,7 +209,7 @@ export default {
                                 this.ossParams.OSSAccessKeyId = response.accessid;
                                 this.ossParams.policy = response.policy;
                                 this.ossParams.signature = response.signature;
-                                this.ossParams.key = localStorage.getItem('userId') + this.randomWord(true, 9, 12) + '.' + fileName;
+                                this.ossParams.key = sessionStorage.getItem('userId') + this.randomWord(true, 9, 12) + '.' + fileName;
                                 resolve();
                             }
                         }.bind(this)
