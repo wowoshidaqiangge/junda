@@ -101,6 +101,34 @@ const router = new Router({
                         ),
                     meta: { title: '订单管理', keepAlive: false }
                 },
+                {
+                    path: '/efficient',
+                    component: () =>
+                        import (
+                            /* webpackChunkName: "table" */
+                            '../components/page/production/efficient'
+                        ),
+                    meta: { title: '生产效率', keepAlive: false }
+                },
+                {
+                    path: '/quality',
+                    component: () =>
+                        import (
+                            /* webpackChunkName: "table" */
+                            '../components/page/production/quality'
+                        ),
+                    meta: { title: '质检管理', keepAlive: false }
+                },
+                {
+                    path: '/retrospect',
+                    component: () =>
+                        import (
+                            /* webpackChunkName: "table" */
+                            '../components/page/production/retrospect'
+                        ),
+                    meta: { title: '生产追溯', keepAlive: false }
+                },
+
                 //数据统计
                 {
                     path: '/mainstatistics',

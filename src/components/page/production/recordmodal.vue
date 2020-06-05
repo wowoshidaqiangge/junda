@@ -12,20 +12,20 @@
                         </el-form-item>
                     </el-col>
                    <el-col :span="11">
-                        <el-form-item label="部门" :label-width="formLabelWidth" prop='deptName'>
+                        <el-form-item label="车间班组" :label-width="formLabelWidth" prop='deptName'>
                                 <el-input v-model="form.deptName" disabled autocomplete="off"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="11">
-                        <el-form-item label="物料名称" :label-width="formLabelWidth" prop='itemName'>
+                        <el-form-item label="产品名称" :label-width="formLabelWidth" prop='itemName'>
                                 <el-input v-model="form.itemName" disabled autocomplete="off"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="11">
+                    <!-- <el-col :span="11">
                         <el-form-item label="物料编码" :label-width="formLabelWidth" prop='itemCode'>
                                 <el-input v-model="form.itemCode" disabled autocomplete="off"></el-input>
                         </el-form-item>
-                    </el-col>
+                    </el-col> -->
                     <el-col :span="11">
                         <el-form-item label="规格型号" :label-width="formLabelWidth" prop='model'>
                                 <el-input v-model="form.model" disabled autocomplete="off"></el-input>
@@ -92,7 +92,6 @@ export default {
             {prop:'totalCount',label:'累计产量'},
             {prop:'createTime',label:'报工时间'},],
             form:{
-
             }
         }
     },

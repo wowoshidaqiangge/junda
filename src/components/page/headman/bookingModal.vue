@@ -51,7 +51,6 @@
                     <el-col :span="21">
                         <p class="modaltit1">请填写生产数量：</p>
                     </el-col>
-                    
                     <el-col :span="11">
                         <el-form-item label="生产数量" :label-width="formLabelWidth" class="formitem formitem1" prop="produceCount">
                             <el-input v-model="form.produceCount" ></el-input>

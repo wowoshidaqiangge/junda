@@ -84,8 +84,21 @@ li{
 .mgb20 {
     margin-bottom: 20px;
 }
+.move-leave-active,
+.move-enter-active {
+  transition: all .4s;
+}
 
-.move-enter-active,
+.move-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.move-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+/* .move-enter-active,
 .move-leave-active {
     transition: opacity .5s;
 }
@@ -93,7 +106,7 @@ li{
 .move-enter,
 .move-leave {
     opacity: 0;
-}
+} */
 
 /*BaseForm*/
 

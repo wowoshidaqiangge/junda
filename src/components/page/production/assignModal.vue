@@ -6,24 +6,24 @@
                 <el-form :model="form" ref="form">
                     <div class="modalcont">
                         <el-col :span="11">
-                            <el-form-item label="任务单号" :label-width="formLabelWidth" prop="taskNumber">
+                            <el-form-item label="工单号" :label-width="formLabelWidth" prop="taskNumber">
                                 <el-input v-model="form.taskNumber" disabled autocomplete="off"></el-input>
                             </el-form-item>
                         </el-col>
 
                         <el-col :span="11">
-                            <el-form-item label="物料名称" :label-width="formLabelWidth" prop="itemName">
-                                <el-input v-model="form.itemName" disabled autocomplete="off"></el-input>
+                            <el-form-item label="产品名称" :label-width="formLabelWidth" prop="productName">
+                                <el-input v-model="form.productName" disabled autocomplete="off"></el-input>
                             </el-form-item>
                         </el-col>
-                        <el-col :span="11">
+                        <!-- <el-col :span="11">
                             <el-form-item label="物料编码" :label-width="formLabelWidth" prop="itemCode">
                                 <el-input v-model="form.itemCode" disabled autocomplete="off"></el-input>
                             </el-form-item>
-                        </el-col>
+                        </el-col> -->
                         <el-col :span="11">
-                            <el-form-item label="规格型号" :label-width="formLabelWidth" prop="model">
-                                <el-input v-model="form.model" disabled autocomplete="off"></el-input>
+                            <el-form-item label="规格型号" :label-width="formLabelWidth" prop="specificationModel">
+                                <el-input v-model="form.specificationModel" disabled autocomplete="off"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="11">
@@ -32,7 +32,7 @@
                             </el-form-item>
                         </el-col>
                     </div>
-                    <el-col :span="24" class="upload-demo" v-if="tit !== '工单分解'">
+                    <!-- <el-col :span="24" class="upload-demo" v-if="tit !== '工单分解'">
                         <span style="line-height:32px;font-size: 18px;color: #324170;">工艺文件上传:</span>
                         <el-upload
                             :action="host"
@@ -47,11 +47,11 @@
                             :file-list="fileList"
                         >
                             <el-button size="small" type="primary">点击上传</el-button>
-                            <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
+                            
                         </el-upload>
-                    </el-col>
+                    </el-col> -->
                     <div v-if="tit !== '工单分解'">
-                        <p style="line-height:32px;font-size: 18px;color: #324170;padding:10px 0">请选择派单设备和人员:</p>
+                        <p style="line-height:32px;font-size: 18px;color: #324170;padding:10px 0">请选择派单的人员:</p>
                         <el-col :span="12">
                             <el-form-item label="部门" :label-width="formLabelWidth" prop="userId">
                                 <el-cascader v-model="form.userId" :options="getuserList" :props="casprops" @change="handleChange">
@@ -59,13 +59,13 @@
                             </el-form-item>
                         </el-col>
 
-                        <el-col :span="12">
+                        <!-- <el-col :span="12">
                             <el-form-item label="生产设备" :label-width="formLabelWidth" prop="deviceId">
                                 <el-select v-model="form.deviceId" placeholder="请选择">
                                     <el-option v-for="item in devicelist" :key="item.id" :label="item.name" :value="item.id"> </el-option>
                                 </el-select>
                             </el-form-item>
-                        </el-col>
+                        </el-col> -->
                     </div>
                 </el-form>
 
@@ -164,7 +164,7 @@ export default {
         };
     },
     created() {
-        this.getdeviceList();
+        // this.getdeviceList();
         this.getuserListByDept();
     },
     watch: {},
@@ -370,7 +370,7 @@ export default {
         padding: 25px 0;
         border: 1px dashed #aaa;
         margin-bottom: 25px;
-        height: 140px;
+        height: 90px;
     }
     .modaltit1 {
         padding: 10px 0;

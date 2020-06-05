@@ -117,7 +117,7 @@
                                      v-if="scope.row.state=='1' || scope.row.state=='2' ||scope.row.state=='3'"
                                     plain
                                     @click="handleEdit(scope.$index, scope.row)"
-                                >详情</el-button>
+                                >修改</el-button>
                                 <el-button
                                     type="danger"
                                     plain
@@ -139,21 +139,20 @@
                 </el-pagination>
             </div>
           </div>
-          <Modal :dialogFormVisible='dialogFormVisible' @close='close' :tit='tit' />
-          <editmodal :dialogFormVisibledit='dialogFormVisibledit' @close='close' :tit='tit' ref='promodal'/>
+          <Modal :dialogFormVisible='dialogFormVisible' @close='close' :tit='tit' ref='promodal'/>
+         
   </div>
 </template>
 
 <script>
 import { produceTaskpage,produceTaskdelete,updateProduceTaskLockById,produceTaskStateList } from 'api/index'
-import Modal from './modal'
+import Modal from './productionmodal'
 import moment from 'moment'
-import editmodal from './proeditmodal'
 import { mapState } from 'vuex'
 export default {
     name: 'production',
     components:{
-        Modal,editmodal
+        Modal
     },
     computed:{
         ...mapState(['screenHeight'])
@@ -169,7 +168,7 @@ export default {
     data() {
         return {
             dialogFormVisible:false,
-            dialogFormVisibledit:false,
+          
             value:'',
             value1:'',
             tit:'',
@@ -266,17 +265,17 @@ export default {
         },
         close(num){
             this.dialogFormVisible = false
-            this.dialogFormVisibledit = false
+           
             if(num==='0'){
                 this.getproduceTaskpage()
             }
         },
         handleEdit(h,m){
-             this.tit = '详情'
+             this.tit = '修改任务'
              this.$refs.promodal.getproduceTaskid(m)
-             this.$refs.promodal.getProduceProgress(m)
+            //  this.$refs.promodal.getProduceProgress(m)
              
-             this.dialogFormVisibledit = true
+             this.dialogFormVisible = true
            
         },
         handleDelete(h,m){
