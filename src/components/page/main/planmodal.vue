@@ -145,7 +145,7 @@
 
 <script>
 import { deviceToTypeList, getListByToType, maintenanceadd, maintenanceid, maintenanceput } from 'api/main';
-import { userListByDept, deviceTypeList } from 'api/index';
+import { userListSearch, deviceTypeList } from 'api/index';
 import moment from 'moment';
 export default {
     name: 'planmodal',
@@ -189,9 +189,9 @@ export default {
             ],
             userlist: [],
             casprops: {
-                label: 'title',
-                value: 'id',
-                children: 'userList'
+                label: 'userName',
+                value: 'userId',
+                // children: 'userList'
             }
         };
     },
@@ -234,7 +234,7 @@ export default {
         },
         // 获取用户列表
         getuserPage() {
-            userListByDept().then(res => {
+            userListSearch().then(res => {
                  if (res.code === '0') {
                     this.userlist = res.data;
                 }
@@ -298,12 +298,12 @@ export default {
             this.$refs[form].validate(valid => {
                 let formObj = this.form
                 if (Array.isArray(this.form.assumeUserId)) {
-                    formObj.assumeUserId = this.form.assumeUserId[1]
+                    formObj.assumeUserId = this.form.assumeUserId[0]
                 } else {
                     formObj.assumeUserId = this.form.assumeUserId
                 }
                 if (Array.isArray(this.form.dutyUserId)) {
-                    formObj.dutyUserId = this.form.dutyUserId[1]
+                    formObj.dutyUserId = this.form.dutyUserId[0]
                 } else {
                     formObj.dutyUserId = this.form.dutyUserId
                 }

@@ -98,16 +98,20 @@ export default {
         getauthroleid:async function(id){
            await authroleid(id).then(res=>{
                  if(res.code === '0'){
-                    res.data.menuIds = res.data.menus
+                    // res.data.menuIds = res.data.menus
                     var arr = []
+                    var checked = []
                      res.data.menus.map(item=>{
                          item.children.map(v=>{
-                             arr.push(v.id)
+                            arr.push(v.id)
+                            if (v.obj.isCheck) {
+                                checked.push(v.id)
+                            }
                          })
-                            
                     })
                      this.ruleForm = res.data
                      this.checklist = arr
+                     this.ruleForm.menuIds = checked
                      // 重新渲染tree
                      this.getuserListMenu()
                  }

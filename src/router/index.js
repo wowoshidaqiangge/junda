@@ -27,6 +27,23 @@ const router = new Router({
                 ),
             meta: { title: '大屏' },
             children: [{
+                path: '/pdf',
+                component: () =>
+                    import (
+                        /* webpackChunkName: "dashboard" */
+                        '../components/page/pdf'
+                    ),
+                meta: { title: '系统首页' }
+            },{
+                path: '/pdfdownlowd',
+                component: () =>
+                    import (
+                        /* webpackChunkName: "dashboard" */
+                        '../components/page/pdf/download.vue'
+                    ),
+                meta: { title: '系统首页' }
+            },
+                {
                     path: '/dashboard',
                     component: () =>
                         import (

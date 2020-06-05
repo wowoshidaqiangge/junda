@@ -119,7 +119,7 @@
 
 <script>
 import { mainrepairid, mainrepairadd, mainrepairput, devInfo} from 'api/main'
-import {userListByDept} from 'api/index'
+import {userListSearch} from 'api/index'
 import { deviceList} from 'api/index'
 import moment from 'moment'
 export default {
@@ -186,9 +186,9 @@ export default {
             timelist:[{value:'year',label:'按年'},{value:'month',label:'按月'}],
             userlist:[],
             casprops: {
-                label: 'title',
-                value: 'id',
-                children: 'userList'
+                label: 'userName',
+                value: 'userId',
+                // children: 'userList'
             }
         }
     },
@@ -215,7 +215,7 @@ export default {
         },
         // 获取用户列表
         getuserPage(){
-           userListByDept().then(res=>{
+           userListSearch().then(res=>{
                 if(res.code==='0'){
                     this.userlist = res.data;
                 }
@@ -253,8 +253,8 @@ export default {
               deviceId:'',
               period:'A型',
               dateTime:'',
-              assumeUserId:'',
-              dutyUserId:'',
+              repairUserId:'',
+              checkUserId:'',
               remark:''
             }
             this.deviceInfo = {
@@ -267,13 +267,14 @@ export default {
        marksure(form){
             this.$refs[form].validate((valid) => {
                 let formObj = this.form
+                console.log(this.form)
                 if (Array.isArray(this.form.checkUserId)) {
-                    formObj.checkUserId = this.form.checkUserId[1]
+                    formObj.checkUserId = this.form.checkUserId[0]
                 } else {
                     formObj.checkUserId = this.form.checkUserId
                 }
                 if (Array.isArray(this.form.repairUserId)) {
-                    formObj.repairUserId = this.form.repairUserId[1]
+                    formObj.repairUserId = this.form.repairUserId[0]
                 } else {
                     formObj.repairUserId = this.form.repairUserId
                 }

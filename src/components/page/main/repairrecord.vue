@@ -125,7 +125,7 @@ export default {
                 { prop: 'toType', label: '设备类型' },
                 { prop: 'fault', label: '故障原因' },
                 { prop: 'dateTime', label: '故障时间' },
-                { prop: 'finishDateTime', label: '完成时间' },
+                { prop: 'dateTime', label: '完成时间' },
                 { prop: 'repairUserName', label: '维修人' },
                 { prop: 'checkUserName', label: '验收人' },
                 { prop: 'states', label: '维修状态' }

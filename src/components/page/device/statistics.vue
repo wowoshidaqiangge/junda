@@ -393,6 +393,7 @@ export default {
         let b = this.casarr[0];
         this.formInline.deviceTye = b;
       }
+      console.log(this.casarr)
       selectDeviceRunData(this.formInline).then(res => {
         if (res.code === '0') {
           var nowtime = [];

@@ -147,10 +147,12 @@ export default {
             columnlist:[
                 { prop:'index',label:'序号'},
                 { prop:'name',label:'员工姓名'},
-                { prop:'phone',label:'手机号'},
-                { prop:'deptName',label:'部门'},
-                { prop:'roleName',label:'角色'},
-                { prop:'icCard',label:'IC卡'},
+                { prop:'phone',label:'手机'},
+                { prop:'deptName',label:'所属部门'},
+                { prop:'icCard',label:'员工IC卡'},
+                { prop:'username',label:'用户账号'},
+                { prop:'roleName',label:'用户角色'},
+                { prop:'createTime',label:'创建时间'},
                 { prop:'createTime',label:'创建时间'},
             ],
             page:{

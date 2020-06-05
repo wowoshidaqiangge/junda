@@ -388,6 +388,14 @@ export const userListByDept = query => {
       method: 'get',
   });
 }
+//  获取用户列表
+
+export const userListSearch = query => {
+  return request({
+      url: `/api/auth/user/list`,
+      method: 'get',
+  });
+}
 // 派单 修改  重新派单
 export const produceTaskAssign = query => {
   return request({

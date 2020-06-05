@@ -67,7 +67,7 @@
                                     type="success"
                                     plain
                                     v-if='scope.row.state==1'
-                                    class="red"
+                                    class="red" 
                                     @click="handlesplit('0', scope.row)"
                                 >禁用</el-button>
                                 <el-button

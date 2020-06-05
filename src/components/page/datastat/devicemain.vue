@@ -162,7 +162,7 @@ export default {
                 {prop:'model',label:'规格型号'},
                 {prop:'toTypeName',label:'设备类别'},
                 {prop:'category',label:'保养类型'},
-                {prop:'period',label:'保养周期'},
+                {prop:'periods',label:'保养周期'},
                 {prop:'dateTime',label:'保养时间'},
                 {prop:'assumeUser',label:'担当人'},
                 {prop:'dutyUser',label:'责任人'},
@@ -240,6 +240,7 @@ export default {
                         item.index = index+1
                         if(item.createTime){
                             item.createTime = item.createTime.split(' ')[0]
+                            item.periods = item.period === 'month' ? '月' : '年'
                         }
                     })
                     this.pagesize = parseInt(res.data.current)
