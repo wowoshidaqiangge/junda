@@ -1,6 +1,6 @@
 <template>
   <div class="production">
-      <div class="top">
+      <div v-loading.fullscreen.lock="fullscreenLoading" class="top">
           <el-row>
               <el-form :model="seachinfo"  ref="seachinfo"  class="demo-ruleForm">
               <el-col :span="10">
@@ -45,6 +45,7 @@
                   <el-form-item label="" >
                         <el-button type="add" icon="el-icon-search" @click="seachinfo1">搜索</el-button>
                         <el-button type="success" icon="el-icon-refresh-right" @click="resetting">重置</el-button>
+                        <el-button type="add" icon="el-icon-search" @click="getPrintList">批量打印</el-button>
                    </el-form-item>
               </el-col>
             </el-form>
@@ -98,7 +99,7 @@
                         </div>
                     </template>
                 </el-table-column>
-                <el-table-column label="操作" width="210" >
+                <el-table-column label="操作" width="300" >
                             <template slot-scope="scope">
                                 <el-button
                                     type="success"
@@ -125,6 +126,11 @@
                                     class="red"
                                     @click="handleDelete(scope.$index, scope.row)"
                                 >删除</el-button>
+                                <el-button
+                                    type="success"
+                                    plain
+                                    @click="handlePrint(scope.row)"
+                                >打印</el-button>
                             </template>
                     </el-table-column>
             
@@ -139,7 +145,9 @@
                 </el-pagination>
             </div>
           </div>
+        <div class="qqrcode" id="QCode" ref="qrCodeUrl"></div>
           <Modal :dialogFormVisible='dialogFormVisible' @close='close' :tit='tit' ref='promodal'/>
+          <download  :dialogFormVisible1='dialogFormVisible1'  ref='pdfdownload'/>
          
   </div>
 </template>
@@ -147,12 +155,15 @@
 <script>
 import { produceTaskpage,produceTaskdelete,updateProduceTaskLockById,produceTaskStateList } from 'api/index'
 import Modal from './productionmodal'
+import download from './download'
+import QRCode from 'qrcodejs2'
 import moment from 'moment'
 import { mapState } from 'vuex'
 export default {
     name: 'production',
     components:{
-        Modal
+        Modal,
+        download
     },
     computed:{
         ...mapState(['screenHeight'])
@@ -168,25 +179,27 @@ export default {
     data() {
         return {
             dialogFormVisible:false,
-          
+            dialogFormVisible1: false,
             value:'',
             value1:'',
             tit:'',
+            row: {},
             page:{
                 current:1,
                 size:10
             },
+            fullscreenLoading: false,
             tableData:[],
             columnlist:[
                 {prop:'index',label:'序号',width:'50'},
+                {prop:'deviceTypeName',label:'部门'},
                 {prop:'taskNumber',label:'任务单'},
                 {prop:'productName',label:'产品名称'},
-                {prop:'productCode',label:'产品编码'},
                 {prop:'model',label:'规格型号'},
                 {prop:'planYield',label:'计划生产量',width:'95'},
-                {prop:'planStartTime',label:'开始时间',width:'90'},
-                {prop:'planEndTime',label:'结束时间',width:'90'},
-                {prop:'createTime',label:'创建时间',width:'90'},
+                {prop:'planStartTime',label:'计划开始时间',width:'90'},
+                {prop:'planEndTime',label:'计划结束时间',width:'90'},
+                {prop:'createTime',label:'新增时间',width:'90'},
                 {prop:'createUser',label:'下单人'},
             ],
             pagesize:1,
@@ -207,6 +220,11 @@ export default {
         this.getproduceTaskStateList()
     },
     methods: {
+        // 获取打印机列表
+        getPrintList() {
+            this.dialogFormVisible1 = true
+            this.$refs.pdfdownload.gourpPrint(this.tableData)
+        },
         // 查询状态
         getproduceTaskStateList(){
             produceTaskStateList().then(res=>{
@@ -277,6 +295,10 @@ export default {
              
              this.dialogFormVisible = true
            
+        },
+        handlePrint (row) {
+            this.$refs.pdfdownload.creatQrCode(row)
+            this.dialogFormVisible1 = true
         },
         handleDelete(h,m){
              this.$confirm('确定要删除吗？', '提示', {

@@ -7,22 +7,22 @@
       <div class="pdfContent">
         <div class="oneItem">
           <div class="oneLeft">计划单号</div>
-          <div class="oneRight">JH-2020050002</div>
+          <div class="oneRight">{{row.taskNumber}}</div>
         </div>
         <div class="oneItem">
           <div class="oneLeft">产品信息</div>
           <div class="twoLeft">
             <div class="ttwoLeft">
               <div class="tttwoLeft">产品编号</div>
-              <div class="tttwoItem">CP-0002</div>
+              <div class="tttwoItem">{{row.productCode}}</div>
             </div>
             <div class="ttwoLeft">
               <div class="tttwoLeft">产品名称</div>
-              <div class="tttwoItem">国际粗哑60°</div>
+              <div class="tttwoItem">{{row.productName}}</div>
             </div>
             <div class="ttwoLeft">
               <div class="tttwoLeft">产品规格</div>
-              <div class="tttwoItem">M1.7</div>
+              <div class="tttwoItem">{{row.model}}</div>
             </div>
           </div>
         </div>
@@ -33,15 +33,66 @@
           <div class="twoLeft">
             <div class="ttwoLeft">
               <div class="tttwoLeft">计划生产数量</div>
-              <div class="tttwoItem">1000</div>
+              <div class="tttwoItem">{{row.planYield}}</div>
             </div>
             <div class="ttwoLeft">
               <div class="tttwoLeft">开工时间</div>
-              <div class="tttwoItem">2020-05-19</div>
+              <div class="tttwoItem">{{row.planStartTime}}</div>
             </div>
             <div class="ttwoLeft">
               <div class="tttwoLeft">完工时间</div>
-              <div class="tttwoItem">2020-06-14</div>
+              <div class="tttwoItem">{{row.planEndTime}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div  v-for="(item,index) in groupData" v-bind:key="index" >
+        <div class="article__heading" :id="'codeimg' + index"  style="page-break-after:always;">
+          <div class="article__heading__title">
+            生产流转表
+          </div>
+          <div class="pdfContent">
+            <div class="oneItem">
+              <div class="oneLeft">计划单号</div>
+              <div class="oneRight">{{item.taskNumber}}</div>
+            </div>
+            <div class="oneItem">
+              <div class="oneLeft">产品信息</div>
+              <div class="twoLeft">
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">产品编号</div>
+                  <div class="tttwoItem">{{item.productCode}}</div>
+                </div>
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">产品名称</div>
+                  <div class="tttwoItem">{{item.productName}}</div>
+                </div>
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">产品规格</div>
+                  <div class="tttwoItem">{{item.model}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="qrcode codeImg"  :id="'XQ' + index"></div>
+            <!-- <img class="codeImg" src="@/assets/logo.png" /> -->
+            <div class="oneItem">
+              <div class="oneLeft">计划内容</div>
+              <div class="twoLeft">
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">计划生产数量</div>
+                  <div class="tttwoItem">{{item.planYield}}</div>
+                </div>
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">开工时间</div>
+                  <div class="tttwoItem">{{item.planStartTime}}</div>
+                </div>
+                <div class="ttwoLeft">
+                  <div class="tttwoLeft">完工时间</div>
+                  <div class="tttwoItem">{{item.planEndTime}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,13 +109,50 @@ export default {
   data() {
     return {
       article: '',
-      fullscreenLoading: false
+      fullscreenLoading: false,
+      row: {},
+      rrow: {},
+      index: 0,
+      groupData: []
     }
   },
   mounted() {
   },
   methods: {
-     creatQrCode() {
+      gourpPrint(groupData) {
+        console.log(groupData)
+        this.groupData = groupData
+        if(groupData === null || groupData.length === 0) {
+          return
+        }
+        var newWin = window.open("")
+        this.$nextTick(() => {
+          for(let i = 0; i < groupData.length; i++) {
+            let imageToPrint = document.getElementById('codeimg' + i)
+              console.log(imageToPrint.outerHTML)
+              document.getElementById('XQ'+i).innerHTML='';//置空
+              var qrcode = new QRCode(document.getElementById("XQ"+i), {
+                  text: 'xxxx', // 需要转换为二维码的内容
+                  width: 196,
+                  height: 196,
+                  colorDark: '#000000',
+                  colorLight: '#ffffff',
+                  correctLevel: QRCode.CorrectLevel.H
+              })
+            setTimeout(function() {
+              newWin.document.write(imageToPrint.outerHTML);
+            }, 1000);
+          }
+        })
+        newWin.document.close(); //在IE浏览器中使用必须添加这一句
+        newWin.focus(); //在IE浏览器中使用必须添加这一句
+        setTimeout(function() {
+          newWin.print(); //打印
+          newWin.close(); //关闭窗口
+        }, 5000);
+      },
+     creatQrCode(row) {
+        this.row = row
         var qrcode = new QRCode(this.$refs.qrCodeUrl, {
             text: 'xxxx', // 需要转换为二维码的内容
             width: 196,
@@ -74,9 +162,7 @@ export default {
             correctLevel: QRCode.CorrectLevel.H
         })
         setTimeout(() => {
-            this.$nextTick(() => {
               this.fetchData()
-            })
           }, 1000)
     },
     fetchData() {
@@ -165,7 +251,7 @@ export default {
 
 .codeImg {
   position: absolute;
-  right: 44px;
+  right: 32px;
   top: 174px;
 }
 .main-article {
