@@ -9,7 +9,7 @@
           <div class="oneLeft">计划单号</div>
           <div class="oneRight">{{row.taskNumber}}</div>
         </div>
-        <div class="oneItem">
+        <!-- <div class="oneItem">
           <div class="oneLeft">产品信息</div>
           <div class="twoLeft">
             <div class="ttwoLeft">
@@ -25,10 +25,10 @@
               <div class="tttwoItem">{{row.model}}</div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="qrcode codeImg"  ref="qrCodeUrl"></div>
         <!-- <img class="codeImg" src="@/assets/logo.png" /> -->
-        <div class="oneItem">
+        <!-- <div class="oneItem">
           <div class="oneLeft">计划内容</div>
           <div class="twoLeft">
             <div class="ttwoLeft">
@@ -44,7 +44,7 @@
               <div class="tttwoItem">{{row.planEndTime}}</div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div>
@@ -77,7 +77,7 @@
             </div>
             <div class="qrcode codeImg"  :id="'XQ' + index"></div>
             <!-- <img class="codeImg" src="@/assets/logo.png" /> -->
-            <div class="oneItem">
+            <!-- <div class="oneItem">
               <div class="oneLeft">计划内容</div>
               <div class="twoLeft">
                 <div class="ttwoLeft">
@@ -93,7 +93,7 @@
                   <div class="tttwoItem">{{item.planEndTime}}</div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@ export default {
             window.location.reload();
             document.body.innerHTML = oldContent;
           })
-        }, 3000)
+        }, 1000)
       // import('./content.js').then(data => {
       //   const { title } = data.default
       //   document.title = title
