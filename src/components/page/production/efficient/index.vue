@@ -118,10 +118,10 @@ export default {
                 {prop:'dayProduceRate',label:'日生产率'},
                 {prop:'dayProduceEfficient',label:'日生产效率'},
                 {prop:'createTime',label:'创建时间'},
-                {prop:'standardsManhour',label:'标准工时'},
-                {prop:'workersCount',label:'工人数'},
-                {prop:'lossManhour',label:'损失工时'},
-                {prop:'workHour',label:'日工作小时'},
+                {prop:'standardsManhour',label:'标准工时',width:'80px'},
+                {prop:'workersCount',label:'工人数',width:'80px'},
+                {prop:'lossManhour',label:'损失工时',width:'80px'},
+                {prop:'workHour',label:'日工作小时',width:'90px'},
             ]
         }
     },
@@ -144,6 +144,7 @@ export default {
                 if(res.code==='0'){
                     res.data.records.map((item,index)=>{
                         item.index = index + 1
+                        item.createTime = item.createTime.split(' ')[0]
                     })
                     this.pagesize = parseInt(res.data.current)
                     this.totals = parseInt(res.data.total)
@@ -157,11 +158,17 @@ export default {
         },
         handleagin(id,info){
             this.tit = '编辑'
-            this.$refs.effmodal.getinfo(info)
             this.dialogFormVisible = true
+            setTimeout(()=>{
+                this.$refs.effmodal.getinfo(info)
+            },0)
+            
         },
-        close(){
+        close(num){
             this.dialogFormVisible = false
+            if(num ==='0'){
+                this.getProduceEfficient()
+            }
         }
     }
 }

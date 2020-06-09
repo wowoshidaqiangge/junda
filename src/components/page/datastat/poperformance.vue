@@ -88,13 +88,13 @@
             ></el-table-column>
             <el-table-column
               prop="planDay"
-              label="计划时长(H)"
+              label="计划时长(天)"
               align="center"
             ></el-table-column>
             <el-table-column
               prop="realDay"
               align="center"
-              label="完成时长(H)"
+              label="完成时长(天)"
             ></el-table-column>
           </el-table>
         </el-tab-pane>
@@ -176,7 +176,6 @@ export default {
             this.$refs.charts1.getxAxis(a);
             this.$refs.charts1.getseries(d);
             this.$refs.charts1.getoption();
-
             if (this.echarttitlename) {
               this.echarttitle = this.echarttitlename + '生产绩效';
             }

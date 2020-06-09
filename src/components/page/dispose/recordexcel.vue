@@ -11,7 +11,7 @@
            <excelupdate @childByValue ='childByValue'/>
            <div>
                 <el-button size="small" type="primary" @click="UpData" style="margin:25px 0 15px 0">点击导入</el-button>    
-                <p class="login-tips">说明: 导入文件类型必须为excel格式，你可以先点击 <a href="https://thingcom-test.oss-cn-hangzhou.aliyuncs.com/%E8%87%BB%E8%88%AA-%E8%AE%BE%E5%A4%87%E6%A1%A3%E6%A1%88-%E6%A8%A1%E6%9D%BF.xlsx">下载模板</a>。</p>
+                <p class="login-tips">说明: 导入文件类型必须为excel格式，你可以先点击 <a href="https://thingcom-test.oss-cn-hangzhou.aliyuncs.com/%E4%BF%8A%E8%BE%BE-%E8%AE%BE%E5%A4%87%E6%A1%A3%E6%A1%88-%E6%A8%A1%E6%9D%BF.xlsx">下载模板</a>。</p>
             </div>
     </el-row>
     </el-dialog>

@@ -419,74 +419,77 @@ export default {
             //选择运行状态
             // 多日
             if (this.ismore) {
-              this.$message({
-                message: '注意：运行状态的起始时间需要是同一天',
-                type: 'warning'
+              // this.$message({
+              //   message: '注意：运行状态的起始时间需要是同一天',
+              //   type: 'warning'
+              // });
+              res.data[0].deviceRunTimeList.map(item => {
+                  if (item.dateTime.split(' ')[1]) {
+                      nowtime.push(item.dateTime.split(' ')[1]);
+                  } else {
+                      nowtime.push(item.dateTime);
+                  }
               });
-              // res.data[0].deviceRunTimeList.map(item => {
-              //     if (item.dateTime.split(' ')[1]) {
-              //         nowtime.push(item.dateTime.split(' ')[1]);
-              //     } else {
-              //         nowtime.push(item.dateTime);
-              //     }
-              // });
-              // res.data[0].deviceRunList.map(item => {
-              //     //关机时长
-              //     num.push(item.offLength.toString());
-              //     //开机时长
-              //     num1.push(item.onLength.toString());
-              //     //运行时长
-              //     num2.push(item.runLength.toString());
-              // });
-              // this.getoption();
-              // let hour;
-              // if (res.data[0].dateList.length > 0) {
-              //     hour = res.data[0].dateList;
-              // } else {
-              //     // 不传日期时 默认为小时
-              //     hour = [
-              //         '0',
-              //         '01',
-              //         '02',
-              //         '03',
-              //         '04',
-              //         '05',
-              //         '06',
-              //         '07',
-              //         '08',
-              //         '09',
-              //         '10',
-              //         '11',
-              //         '12',
-              //         '13',
-              //         '14',
-              //         '15',
-              //         '16',
-              //         '17',
-              //         '18',
-              //         '19',
-              //         '20',
-              //         '21',
-              //         '22',
-              //         '23'
-              //     ];
-              // }
-              // this.option.xAxis.data = hour;
-              // this.option.series[0].name = '关机时长';
-              // this.option.series[0].data = this.hanld2(hour, nowtime, num);
-              // this.option.series[1].data = this.hanld2(hour, nowtime, num1);
-              // this.option.series[2].data = this.hanld2(hour, nowtime, num2);
+              res.data[0].deviceRunList.map(item => {
+                  //关机时长
+                  num.push(item.offLength.toString());
+                  //开机时长
+                  num1.push(item.onLength.toString());
+                  //运行时长
+                  num2.push(item.runLength.toString());
+              });
+              this.getoption();
+              let hour;
+              if (res.data[0].dateList.length > 0) {
+                  hour = res.data[0].dateList;
+              } else {
+                  // 不传日期时 默认为小时
+                  hour = [
+                      '0',
+                      '01',
+                      '02',
+                      '03',
+                      '04',
+                      '05',
+                      '06',
+                      '07',
+                      '08',
+                      '09',
+                      '10',
+                      '11',
+                      '12',
+                      '13',
+                      '14',
+                      '15',
+                      '16',
+                      '17',
+                      '18',
+                      '19',
+                      '20',
+                      '21',
+                      '22',
+                      '23'
+                  ];
+              }
+              this.option.xAxis.data = hour;
+              this.option.series[0].name = '关机时长';
+              this.option.series[0].data = this.hanld2(hour, nowtime, num);
+              this.option.series[1].data = this.hanld2(hour, nowtime, num1);
+              this.option.series[2].data = this.hanld2(hour, nowtime, num2);
             } else {
               // 图数据
               let state = [];
               let hour = [];
+              let hou1 = [] // 辅助数据
               res.data[0].deviceRunList.map(item => {
-                state.push(item.state);
+                state.push(parseInt(item.state)+1);
               });
               res.data[0].deviceRunList.map(item => {
                 hour.push(item.dateTime.split(' ')[1]);
+                hou1.push(item.dateTime.split(' ')[1]);
               });
-              this.drawStateChart(hour, state);
+              hou1.pop()
+              this.drawStateChart(hour, state,hou1);
               // 表数据：
               this.isload = true;
               this.excellist = res.data[0].deviceRunList;
@@ -506,8 +509,9 @@ export default {
     },
     // 绘制阶梯状态图（柱状图模拟，无法切换折线/柱状）
 
-    drawStateChart(hour, state) {
-      // debugger;
+    drawStateChart(hour, state,hour1) {
+      
+     
       let myChart = Echarts.init(document.getElementById('chart'));
       // 使用 aidState做填充，fakeState显示小线条
       myChart.showLoading({
@@ -521,6 +525,7 @@ export default {
         aidState[i] = state[i] - fakeState[i];
         yax[i] = 0.01;
       }
+     
       let option1 = {
         title: {
           show: Object.keys(state).length === 0,
@@ -537,38 +542,46 @@ export default {
           show: false
         },
         toolbox: {
-          show: true,
-          feature: {
-            magicType: {
-              show: true,
-              type: ['line', 'bar']
-            }
-          }
+          show: false,
+         
         },
         grid: {
           bottom: '10%',
           top: '10%',
           containLabel: false
         },
-        xAxis: {
+
+        xAxis: [
+          {
           type: 'category',
           data: hour,
+          boundaryGap: false,
+          // axisTick: {
+          //   show: false
+          
+            
+          // },
+          // axisLabel: {
+          //   interval: 0,
+          //   align: 'center'
+          // }
+        },{
+          type: 'category',
+          data: hour1,
           boundaryGap: true,
           axisTick: {
             show: false
+            
           },
           axisLabel: {
-            interval: 0,
-            align: 'center'
+            show: false
           }
-        },
+        }
+        ],
         yAxis: {
           type: 'value',
-          // scale: false,
           interval: 1,
-          axisTick: {
-            show: false
-          },
+
           axisLine: {
             show: false
           },
@@ -578,7 +591,7 @@ export default {
             margin: 36,
             align: 'left',
             formatter: function(value) {
-              let stateMsg = ['关机', '开机', '运行'];
+              let stateMsg = ['状态','关机', '开机', '运行'];
               return (value = stateMsg[value]);
             }
           },
@@ -588,10 +601,14 @@ export default {
         },
         series: [
           {
+              type: 'line',
+          },
+          {
             name: '辅助',
             type: 'bar',
             data: aidState,
             stack: '设备状态值',
+            xAxisIndex: 1,
             barWidth: '100%',
             itemStyle: {
               color: 'rgba(0,0,0,0)',
@@ -604,11 +621,12 @@ export default {
             name: '状态',
             data: fakeState,
             stack: '设备状态值',
+            xAxisIndex: 1,
             barWidth: '100%',
             itemStyle: {
               color: function(params) {
                 // build a color map as your need.
-                var colors = ['#737172', '#0096ff', '#259B24'];
+                var colors = ['#000','#737172', '#0096ff', '#259B24'];
                 return colors[params.value * 100];
               }
             }

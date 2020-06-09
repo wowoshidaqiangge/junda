@@ -131,11 +131,12 @@ export default {
             },
             tableData:[],
             columnlist:[
-                {prop:'index',label:'序号'},
-                {prop:'productCode',label:'产品编码'},
+                {prop:'index',label:'序号',width:'80px'},
                 {prop:'productName',label:'产品名称'},
+               
+                
                 {prop:'model',label:'规格型号'},
-                 {prop:'itemCodes',label:'关联物料',width:250},
+                 
                 {prop:'unit',label:'基本单位'},
                
                 {prop:'createTime',label:'创建时间'}
@@ -161,7 +162,7 @@ export default {
     },
     methods: {
         addexcel(){
-            this.tit = "导入物料"
+            this.tit = "导入EXCEL"
             this.dialogFormVisible1 = true
         },
         resetting(){

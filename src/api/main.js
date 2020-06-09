@@ -129,7 +129,8 @@ export const mainrecordpage = query => {
     return request({
         url: `/api/maintain/maintenance/pageRecord`,
         method: 'get',
-        params: query
+        params: query,
+        headers: { userId: sessionStorage.getItem('userId') }
     });
 };
 // 查看保养计划详情

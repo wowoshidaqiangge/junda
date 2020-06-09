@@ -240,8 +240,9 @@ export default {
                         item.index = index+1
                         if(item.createTime){
                             item.createTime = item.createTime.split(' ')[0]
-                            item.periods = item.period === 'month' ? '月' : '年'
+                            
                         }
+                        item.period = item.period === 'month' ? '月' : '年'
                     })
                     this.pagesize = parseInt(res.data.current)
                     this.totals = parseInt(res.data.total)

@@ -22,7 +22,7 @@ export const getProduceEfficient = query => {
 // 修改生产效率
 export const getProduceEfficientput = query => {
     return request({
-        url: `/api/producetask/produceTaskReport/getProduceEfficient`,
+        url: `/api/producetask/produceTaskReport`,
         method: 'put',
         data: query
     });

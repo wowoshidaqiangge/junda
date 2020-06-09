@@ -4,7 +4,7 @@ const service = axios.create({
     // process.env.NODE_ENV === 'development' 来判断是否开发环境
     
     baseURL: 'http://116.62.155.56:7010', //请求路径
-    // baseURL: 'http://139.9.7.204:7001',
+    // baseURL: 'http://192.168.0.106:7014',
     // baseURL: 'http://zh.thingcom.com',
     // baseURL:  'http://139.9.7.204.61:7002',
     // baseURL: 'http://172.16.1.100:7001', //请求路径

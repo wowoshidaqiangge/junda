@@ -164,7 +164,7 @@ export default {
     },
     methods: {
       addexcel(){
-        this.tit = "导入物料"
+        this.tit = "导入EXCEL"
         this.dialogFormVisible1 = true
       },
      

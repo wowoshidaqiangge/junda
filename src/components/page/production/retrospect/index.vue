@@ -1,6 +1,6 @@
 <template>
   <div class="retrospect">
-      生产追溯页
+       <FormCreate :rule="rule" v-model="fApi" :option="options" />
   </div>
 </template>
 
@@ -24,7 +24,38 @@ export default {
     data() {
         return {
          
-            
+             fApi:{},
+            options:{
+               
+            },
+            rule:[
+                //  {
+                //     type:'datePicker',
+                //     field:'date',
+                //     value: '',
+                  
+                //     col:{
+                //         span:5,    
+                //     },
+                //     labelCol: {span:0},
+                //     props: {
+                //         "type": "daterange",
+                //         "format": "yyyy-MM-dd HH:mm:ss",
+                //         "startPlaceholder":"开始日期",
+                //         "endPlaceholder":"结束日期",
+                //     }
+                // },
+                {
+                    type:'input',
+                    field:'inputField3',
+                  
+                },
+                 {
+                        type:'input',
+                        field:'col8_3',
+                        
+                    },
+            ],
         }
     },
     created(){

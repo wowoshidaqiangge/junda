@@ -1,7 +1,11 @@
 <template>
   <div class="quality">
        <div class="top">
-          <el-row>
+        <!-- <el-col :span="12">
+                   <el-form-item label="" >
+                   </el-form-item>
+              </el-col> -->
+          <!-- <el-row>
             <el-form :model="seachinfo"  ref="seachinfo"  class="demo-ruleForm">
               <el-col :span="12">
                    <el-form-item label="" >
@@ -35,15 +39,14 @@
                    </el-form-item>
               </el-col>
             </el-form>
-          </el-row>
+          </el-row> -->
+          <FormCreate :rule="rule" v-model="fApi" :option="options" @xaboy-click="seachinfo1" @reset-click="resetting"/>
      </div>
      <div class="bot">
            <el-table
                 :data="produceTaskQualitylist"
                 stripe
-                border
-               
-               >
+                border>
                  <el-table-column
                     v-for="(item,index) in columnlist"
                     :key="index"
@@ -53,9 +56,6 @@
                     align="center"
                 >
                  </el-table-column>
-                  
-               
-               
            </el-table>
             <div class="page">
                 <el-pagination
@@ -89,8 +89,69 @@ export default {
     },
     data() {
         return {
+            fApi:{},
+            options:{
+                submitBtn:false,
+                
+            },
+            rule:[
+                 {
+                    type: 'el-row',
+                    native: true,
+                    children: [
+                        {
+                            type: 'el-col',
+                            props: { span: 5,offset: 11},
+                            children: [
+                                {
+                                    type:'datePicker',
+                                    field:'value1',
+                                    props: {
+                                        "type": "daterange",
+                                        "startPlaceholder":"开始日期",
+                                        "endPlaceholder":"结束日期",
+                                        "style":'width:100%'
+                                    }
+                                },
+                            ]
+                        },
+                        {
+                            type: 'el-col',
+                            props: {span: 3,},
+                            children: [
+                                {
+                                    type:'input',
+                                    field:'productNameOrTaskNumber',
+                                    props: {'placeholder':' 请输入', "style":'margin-left:20px'},
+                                },
+                            ]
+                        },
+                        {
+                            type: 'el-col',
+                            props: {span: 3,"style":'margin-left:40px'},
+                            children: [
+                                {
+                                    type:'el-button',
+                                    props:{type:'add',icon:"el-icon-search"},
+                                    col:{ span:12},
+                                    children: ['搜索'],
+                                    emit: ['click'],
+                                    emitPrefix: 'xaboy',
+                                },
+                                {
+                                    type:'el-button',
+                                    props:{ type:'success', icon:"el-icon-refresh-right" },
+                                    col:{ span:12 },
+                                    children: ['重置'],
+                                    emit: ['click'],
+                                    emitPrefix: 'reset',
+                                },
+                            ]
+                        },
+                    ]
+                }
+            ],
             seachinfo:{
-
             },
             value1:[],
             page:{
@@ -120,16 +181,17 @@ export default {
     },
     created(){
        this.getproduceTaskQuality()
+       
     },
     methods: {
         changedate(){
 
         },
         resetting(){
-
+             this.fApi.resetFields()
         },
-        seachinfo1(){
-
+        seachinfo1(info){
+            console.log(this.fApi.formData(),info)
         },
         // 数据列表
         getproduceTaskQuality(){
@@ -144,15 +206,14 @@ export default {
                 }
             })
         },
-        //
+        // 
         handleCurrentChange(val){
-
+            this.page.current = val
+            this.getproduceTaskQuality()
         }
     }
 }
 </script>
-
-
 <style lang='less'>
         .quality{
              .top{

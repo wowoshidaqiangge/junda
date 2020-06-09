@@ -35,13 +35,12 @@
                     <el-col :span="3">
                         <el-form-item label="">
                             <el-button class="searchBtn" size="mini" type="add" @click="searchmain()">查询</el-button>
-                            <el-button type="success" icon="el-icon-refresh-right" @click="resetting">重置</el-button>
+                            <el-button type="success" size="mini" icon="el-icon-refresh-right" @click="resetting">重置</el-button>
                         </el-form-item>
                     </el-col>
                 </el-form>
             </el-row>
         </div>
-
         <div class="bot">
             <el-table :data="tableData" stripe :height="screenWidth" style="width: 100%">
                 <el-table-column
@@ -164,7 +163,6 @@ export default {
                     this.pagesize = parseInt(res.data.current);
                     this.totals = parseInt(res.data.total);
                     this.tableData = res.data.records;
-                    console.log(this.tableData);
                 }
             });
         },
