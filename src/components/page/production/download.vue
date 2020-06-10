@@ -9,7 +9,7 @@
           <div class="oneLeft">计划单号</div>
           <div class="oneRight">{{row.taskNumber}}</div>
         </div>
-        <!-- <div class="oneItem">
+        <div class="oneItem">
           <div class="oneLeft">产品信息</div>
           <div class="twoLeft">
             <div class="ttwoLeft">
@@ -25,10 +25,10 @@
               <div class="tttwoItem">{{row.model}}</div>
             </div>
           </div>
-        </div> -->
+        </div>
         <div class="qrcode codeImg"  ref="qrCodeUrl"></div>
         <!-- <img class="codeImg" src="@/assets/logo.png" /> -->
-        <!-- <div class="oneItem">
+        <div class="oneItem">
           <div class="oneLeft">计划内容</div>
           <div class="twoLeft">
             <div class="ttwoLeft">
@@ -44,56 +44,56 @@
               <div class="tttwoItem">{{row.planEndTime}}</div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
-    <div>
+    <div style="display: none;">
       <div  v-for="(item,index) in groupData" v-bind:key="index" >
         <div class="article__heading" :id="'codeimg' + index"  style="page-break-after:always;">
           <div class="article__heading__title">
             生产流转表
           </div>
-          <div class="pdfContent">
-            <div class="oneItem">
-              <div class="oneLeft">计划单号</div>
-              <div class="oneRight">{{item.taskNumber}}</div>
+          <div style="text-align: center">
+            <div class="oneItem" style="display: inline-flex;">
+              <div class="oneLeft" style="border: solid 1px;width: 200px;font-size: 20px;font-weight: 600;padding: 34px 0;">计划单号</div>
+              <div class="oneRight" style="border: solid 1px;border-left: none;width: 450px;font-size: 30px;font-weight: 600;padding: 30px 0;">{{item.taskNumber}}</div>
             </div>
-            <div class="oneItem">
-              <div class="oneLeft">产品信息</div>
-              <div class="twoLeft">
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">产品编号</div>
-                  <div class="tttwoItem">{{item.productCode}}</div>
+            <div class="oneItem" style="display: inline-flex;">
+              <div class="oneLeft" style="border: solid 1px;width: 200px;font-size: 20px;font-weight: 600;padding: 34px 0;">产品信息</div>
+              <div class="twoLeft" style="border: solid 1px;border-left: none;width: 450px;">
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">产品编号</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.productCode}}</div>
                 </div>
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">产品名称</div>
-                  <div class="tttwoItem">{{item.productName}}</div>
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">产品名称</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.productName}}</div>
                 </div>
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">产品规格</div>
-                  <div class="tttwoItem">{{item.model}}</div>
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">产品规格</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.model}}</div>
                 </div>
               </div>
             </div>
-            <div class="qrcode codeImg"  :id="'XQ' + index"></div>
+            <div class="qrcode codeImg" :style="'position: absolute;right: 32px;top: ' + (130 + index * 1045) +'px;'"  :id="'XQ' + index"></div>
             <!-- <img class="codeImg" src="@/assets/logo.png" /> -->
-            <!-- <div class="oneItem">
-              <div class="oneLeft">计划内容</div>
-              <div class="twoLeft">
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">计划生产数量</div>
-                  <div class="tttwoItem">{{item.planYield}}</div>
+            <div class="oneItem" style="display: inline-flex;">
+              <div class="oneLeft" style="border: solid 1px;width: 200px;font-size: 20px;font-weight: 600;padding: 34px 0;">计划内容</div>
+              <div class="twoLeft" style="border: solid 1px;border-left: none;width: 450px;">
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">计划生产数量</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.planYield}}</div>
                 </div>
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">开工时间</div>
-                  <div class="tttwoItem">{{item.planStartTime}}</div>
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">开工时间</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.planStartTime}}</div>
                 </div>
-                <div class="ttwoLeft">
-                  <div class="tttwoLeft">完工时间</div>
-                  <div class="tttwoItem">{{item.planEndTime}}</div>
+                <div class="ttwoLeft" style="display: flex;border-bottom: solid 1px;">
+                  <div class="tttwoLeft" style="border-right: 1px solid;padding: 5px;width: 100px">完工时间</div>
+                  <div class="tttwoItem" style="padding: 5px">{{item.planEndTime}}</div>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -179,7 +179,7 @@ export default {
             window.location.reload();
             document.body.innerHTML = oldContent;
           })
-        }, 1000)
+        }, 3000)
       // import('./content.js').then(data => {
       //   const { title } = data.default
       //   document.title = title
@@ -263,6 +263,7 @@ export default {
 }
 
 .article__heading {
+  display: none;
   position: relative;
   padding: 0 0 20px;
   overflow: hidden;
@@ -327,7 +328,6 @@ export default {
   li {
     --x-height-multiplier: 0.375;
     --baseline-multiplier: 0.17;
-
     letter-spacing: .01rem;
     font-weight: 400;
     font-style: normal;

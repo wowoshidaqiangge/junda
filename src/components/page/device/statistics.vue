@@ -525,7 +525,6 @@ export default {
         aidState[i] = state[i] - fakeState[i];
         yax[i] = 0.01;
       }
-     
       let option1 = {
         title: {
           show: Object.keys(state).length === 0,

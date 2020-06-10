@@ -20,38 +20,35 @@
                             end-placeholder="结束日期">
                         </el-date-picker>
                   </el-form-item>
-                  
               </el-col>
-             
               <el-col :span="3" style="margin-right:10px;margin-left:20px">
                   <el-form-item label=""  prop="productNameOrTaskNumber" >
                      <el-input  placeholder="物料名称或编码" v-model="seachinfo.productNameOrTaskNumber"> </el-input>
                  </el-form-item>
-                  
               </el-col>
               <el-col :span="3">
-                  <el-form-item label="" >
+                    <el-form-item label="" >
                         <el-button type="add" icon="el-icon-search" @click="seachinfo1">搜索</el-button>
                         <el-button type="success" icon="el-icon-refresh-right" @click="resetting">重置</el-button>
-                   </el-form-item>
+                    </el-form-item>
               </el-col>
             </el-form>
           </el-row>
      </div>
      <div class="bot">
-           <el-table
+            <el-table
                 :data="Efficientlist"
                 stripe
                 border>
-                 <el-table-column
+                <el-table-column
                     v-for="(item,index) in columnlist"
                     :key="index"
                     :width="item.width"
                     :prop="item.prop"
                     :label="item.label"
                     align="center">
-                 </el-table-column>
-                 <el-table-column label="操作" align="center">
+                </el-table-column>
+                <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
                                 <el-button
                                     type="success"
@@ -59,7 +56,7 @@
                                     @click="handleagin(scope.$index, scope.row)"
                                 >编辑</el-button>
                             </template>
-                    </el-table-column>
+                </el-table-column>
            </el-table>
             <div class="page">
                 <el-pagination
@@ -90,15 +87,13 @@ export default {
        
     },
     mounted(){
-           
+
     },
     data() {
         return {
             tit:'',
             dialogFormVisible:false,
-             seachinfo:{
-
-            },
+            seachinfo:{},
             value1:[],
             page:{
                 current:1,
@@ -117,7 +112,7 @@ export default {
                 {prop:'produceCount',label:'生产量'},
                 {prop:'dayProduceRate',label:'日生产率'},
                 {prop:'dayProduceEfficient',label:'日生产效率'},
-                {prop:'createTime',label:'创建时间'},
+                {prop:'createTime',label: '创建时间'},
                 {prop:'standardsManhour',label:'标准工时',width:'80px'},
                 {prop:'workersCount',label:'工人数',width:'80px'},
                 {prop:'lossManhour',label:'损失工时',width:'80px'},
@@ -129,7 +124,7 @@ export default {
        this.getProduceEfficient()
     },
     methods: {
-     changedate(){
+        changedate(){
 
         },
         resetting(){
@@ -154,7 +149,8 @@ export default {
         },
         //
         handleCurrentChange(val){
-
+            this.page.current =val
+            this.getProduceEfficient()
         },
         handleagin(id,info){
             this.tit = '编辑'
@@ -162,7 +158,6 @@ export default {
             setTimeout(()=>{
                 this.$refs.effmodal.getinfo(info)
             },0)
-            
         },
         close(num){
             this.dialogFormVisible = false

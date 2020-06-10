@@ -6,9 +6,9 @@
               <el-col :span="10">
                    <el-form-item label="" >
                        <el-button type="add" icon='el-icon-circle-plus-outline' @click="add">新增</el-button>
+                       <el-button type="add" icon="el-icon-search" @click="getPrintList">批量打印</el-button>
                    </el-form-item>
               </el-col>
-              
               <el-col :span="5">
                   <el-form-item label="" prop="value1">
                         <el-date-picker
@@ -21,7 +21,6 @@
                             end-placeholder="结束日期">
                         </el-date-picker>
                   </el-form-item>
-                  
               </el-col>
               <el-col :span="2" style="margin:0 20px">
                  <el-form-item label=""  prop="state" >
@@ -39,34 +38,30 @@
                   <el-form-item label=""  prop="productNameOrCode" >
                      <el-input  placeholder="产品名称或编码" v-model="seachinfo.productNameOrCode" class="elinput"> </el-input>
                  </el-form-item>
-                  
               </el-col>
               <el-col :span="3">
                   <el-form-item label="" >
                         <el-button type="add" icon="el-icon-search" @click="seachinfo1">搜索</el-button>
                         <el-button type="success" icon="el-icon-refresh-right" @click="resetting">重置</el-button>
-                        <el-button type="add" icon="el-icon-search" @click="getPrintList">批量打印</el-button>
                    </el-form-item>
               </el-col>
             </el-form>
           </el-row>
      </div>
      <div>
-             <el-table
+            <el-table
                 :data="tableData"
                 stripe
                 :height='screenWidth'
                 border
                 style="width: 100%">
-
                 <el-table-column
                     v-for="(item,index) in columnlist"
                     :key="index"
                     :width="item.width"
                     :prop="item.prop"
                     :label="item.label"
-                    align="center"
-                >
+                    align="center">
                 </el-table-column>
                 <el-table-column
                     label="状态"
@@ -147,9 +142,8 @@
           </div>
         <div class="qqrcode" id="QCode" ref="qrCodeUrl"></div>
           <Modal :dialogFormVisible='dialogFormVisible' @close='close' :tit='tit' ref='promodal'/>
-          <download  :dialogFormVisible1='dialogFormVisible1'  ref='pdfdownload'/>
-         
-  </div>
+          <download :dialogFormVisible1='dialogFormVisible1'  ref='pdfdownload'/>
+        </div>
 </template>
 
 <script>
